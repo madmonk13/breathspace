@@ -1,5 +1,6 @@
+<meta charset="utf-8">
 <title>Breath Space</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Guided breathing meditation with 5×5, 4×6, and 4×8 patterns">
 <meta name="theme-color" content="#1e6fa8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#02080f" media="(prefers-color-scheme: dark)">
@@ -27,6 +28,14 @@
   --fg:         rgba(8,38,78,0.92);
   --fg2:        rgba(28,76,148,0.65);
   --fg3:        rgba(18,65,138,0.78);
+  --btn-bg:     rgba(255,255,255,0.58);
+  --btn-bd:     rgba(8,38,78,0.18);
+  --btn-bg-h:   rgba(255,255,255,0.78);
+  --btn-bd-h:   rgba(8,38,78,0.3);
+  --pill-bg:    rgba(255,255,255,0.38);
+  --pill-bd:    rgba(8,38,78,0.14);
+  --pill-bg-a:  rgba(255,255,255,0.68);
+  --pill-bd-a:  rgba(8,38,78,0.28);
   --sphere-dur: 5s;
 }
 
@@ -44,6 +53,14 @@
     --fg:         rgba(195,228,255,0.95);
     --fg2:        rgba(135,188,240,0.72);
     --fg3:        rgba(145,198,250,0.82);
+    --btn-bg:     rgba(255,255,255,0.14);
+    --btn-bd:     rgba(255,255,255,0.22);
+    --btn-bg-h:   rgba(255,255,255,0.24);
+    --btn-bd-h:   rgba(255,255,255,0.38);
+    --pill-bg:    rgba(255,255,255,0.08);
+    --pill-bd:    rgba(255,255,255,0.15);
+    --pill-bg-a:  rgba(255,255,255,0.20);
+    --pill-bd-a:  rgba(255,255,255,0.38);
     color-scheme: dark;
   }
 }
@@ -60,6 +77,14 @@
   --fg:         rgba(195,228,255,0.95);
   --fg2:        rgba(135,188,240,0.72);
   --fg3:        rgba(145,198,250,0.82);
+  --btn-bg:     rgba(255,255,255,0.14);
+  --btn-bd:     rgba(255,255,255,0.22);
+  --btn-bg-h:   rgba(255,255,255,0.24);
+  --btn-bd-h:   rgba(255,255,255,0.38);
+  --pill-bg:    rgba(255,255,255,0.08);
+  --pill-bd:    rgba(255,255,255,0.15);
+  --pill-bg-a:  rgba(255,255,255,0.20);
+  --pill-bd-a:  rgba(255,255,255,0.38);
   color-scheme: dark;
 }
 
@@ -147,11 +172,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56vw;
-  height: 56vw;
+  width: min(56vw, 52vh, 480px);
+  height: min(56vw, 52vh, 480px);
   max-width: calc(100vw - 32px);
-  max-height: calc(100vw - 32px);
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 /* Sphere transitions use --sphere-dur so JS can change them per phase */
@@ -248,8 +272,8 @@ body {
 
 .btn-breath {
   appearance: none;
-  background: rgba(255,255,255,0.17);
-  border: 1px solid rgba(255,255,255,0.28);
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-bd);
   border-radius: 100px;
   padding: 12px 48px;
   font-family: 'Raleway', system-ui, sans-serif;
@@ -266,8 +290,8 @@ body {
   min-width: 150px;
 }
 .btn-breath:hover {
-  background: rgba(255,255,255,0.27);
-  border-color: rgba(255,255,255,0.44);
+  background: var(--btn-bg-h);
+  border-color: var(--btn-bd-h);
   transform: translateY(-1px);
 }
 .btn-breath:active { transform: scale(0.97) translateY(0); }
@@ -285,8 +309,8 @@ body {
 
 .pattern-btn {
   appearance: none;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-bd);
   border-radius: 100px;
   padding: 6px 16px;
   font-family: 'Raleway', system-ui, sans-serif;
@@ -300,14 +324,14 @@ body {
   white-space: nowrap;
 }
 .pattern-btn:hover {
-  background: rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.3);
+  background: var(--btn-bg-h);
+  border-color: var(--btn-bd-h);
   color: var(--fg);
 }
 .pattern-btn:active { transform: scale(0.96); }
 .pattern-btn.active {
-  background: rgba(255,255,255,0.2);
-  border-color: rgba(255,255,255,0.38);
+  background: var(--pill-bg-a);
+  border-color: var(--pill-bd-a);
   color: var(--fg);
   font-weight: 400;
 }
@@ -353,6 +377,20 @@ body {
 .theme-toggle:focus-visible {
   outline: 2px solid rgba(255,255,255,0.55);
   outline-offset: 3px;
+}
+
+@media (max-width: 540px) {
+  .btn-breath {
+    padding: 15px 52px;
+    font-size: 12px;
+    min-width: 160px;
+  }
+  .pattern-btn {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  .controls-area { gap: 16px; }
+  .scene { gap: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
