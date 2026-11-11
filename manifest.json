@@ -2,7 +2,7 @@
   "name": "Breath Space",
   "short_name": "Breath Space",
   "description": "Guided breathing meditation",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#02080f",
